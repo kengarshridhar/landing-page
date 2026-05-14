@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suntech Info — Digital Excellence</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FF6B00;
+    --sun-light: #FF9A3C;
+    --sun-pale: #FFF3E8;
+    --ink: #0D0D0D;
+    --slate: #1A1A2E;
+    --mid: #5A5A72;
+    --light: #F5F5F7;
+    --white: #FFFFFF;
+    --accent: #00C9A7;
+    --accent2: #4F46E5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,107,0,0.15);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.5rem; color: var(--white);
+    display: flex; align-items: center; gap: .5rem; text-decoration: none;
+  }
+  .logo span { color: var(--sun); }
+  .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sun); margin-top: 2px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,.72); font-size: .9rem; text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--sun); }
+  .nav-cta {
+    background: var(--sun); color: var(--white);
+    border: none; padding: .6rem 1.4rem; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: .9rem;
+    cursor: pointer; transition: transform .2s, box-shadow .2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,0,.4); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--slate);
+    display: grid; place-items: center;
+    position: relative; overflow: hidden;
+    padding: 7rem 5% 4rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(255,107,0,.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 10% 80%, rgba(79,70,229,.12) 0%, transparent 60%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    max-width: 1200px; width: 100%;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,107,0,.12); border: 1px solid rgba(255,107,0,.3);
+    padding: .35rem .9rem; border-radius: 50px; margin-bottom: 1.4rem;
+    color: var(--sun-light); font-size: .82rem; font-weight: 500;
+  }
+  .hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--sun); display:inline-block; animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 800; line-height: 1.1;
+    color: var(--white); margin-bottom: 1.4rem;
+  }
+  h1 em { font-style: normal; color: var(--sun); }
+  .hero-desc {
+    color: rgba(255,255,255,.62); font-size: 1.1rem; line-height: 1.7;
+    max-width: 480px; margin-bottom: 2.4rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--sun); color: var(--white);
+    padding: .85rem 2rem; border-radius: 50px; font-weight: 600;
+    text-decoration: none; font-size: 1rem;
+    transition: transform .2s, box-shadow .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,107,0,.45); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,.25); color: var(--white);
+    padding: .85rem 2rem; border-radius: 50px; font-size: 1rem;
+    text-decoration: none; transition: border-color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: var(--sun); background: rgba(255,107,0,.08); }
+  .hero-stats { display: flex; gap: 2rem; margin-top: 3rem; }
+  .stat { }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--sun); }
+  .stat-lbl { color: rgba(255,255,255,.5); font-size: .82rem; }
+  /* hero image panel */
+  .hero-visual {
+    position: relative; border-radius: 20px; overflow: hidden;
+    aspect-ratio: 4/3;
+    box-shadow: 0 40px 80px rgba(0,0,0,.5);
+    border: 1px solid rgba(255,107,0,.2);
+  }
+  .hero-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .hero-visual-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,107,0,.15) 0%, transparent 50%);
+  }
+  .floating-card {
+    position: absolute; bottom: 1.5rem; left: 1.5rem;
+    background: rgba(13,13,13,.85); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,107,0,.2); border-radius: 12px;
+    padding: .8rem 1.2rem; color: var(--white);
+    font-size: .82rem; display: flex; align-items: center; gap: .6rem;
+  }
+  .floating-card .dot { width:8px;height:8px;border-radius:50%;background:var(--accent); }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--sun); overflow: hidden; padding: .8rem 0;
+  }
+  .marquee-track {
+    display: flex; gap: 3rem; white-space: nowrap;
+    animation: marquee 22s linear infinite;
+  }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-item {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: .95rem;
+    color: rgba(255,255,255,.85); display: flex; align-items: center; gap: .6rem;
+  }
+  .marquee-item::before { content:'✦'; font-size:.7rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5%; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--sun); margin-bottom: .8rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: var(--mid); font-size: 1.05rem; line-height: 1.7; max-width: 560px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--light); }
+  .services-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--white); border-radius: 18px; padding: 2rem;
+    border: 1px solid rgba(0,0,0,.07);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background: var(--sun); transform: scaleX(0); transform-origin: left;
+    transition: transform .35s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,.1); border-color: rgba(255,107,0,.2); }
+  .svc-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--sun-pale); display: grid; place-items: center;
+    font-size: 1.5rem; margin-bottom: 1.2rem;
+  }
+  .svc-title {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.08rem; margin-bottom: .6rem;
+  }
+  .svc-desc { color: var(--mid); font-size: .92rem; line-height: 1.65; }
+  .svc-link {
+    display: inline-flex; align-items: center; gap: .3rem; margin-top: 1rem;
+    color: var(--sun); font-size: .88rem; font-weight: 600; text-decoration: none;
+    transition: gap .2s;
+  }
+  .svc-link:hover { gap: .6rem; }
+
+  /* ── WHY US ── */
+  #why {
+    background: var(--slate);
+    display: grid;
+  }
+  #why .container { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .why-visual { position: relative; border-radius: 20px; overflow: hidden; }
+  .why-visual img { width: 100%; border-radius: 20px; display: block; }
+  .why-badge-float {
+    position: absolute; top: 1.5rem; right: -1rem;
+    background: var(--sun); color: var(--white); border-radius: 12px;
+    padding: .8rem 1.2rem; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.1rem; text-align: center; line-height: 1.2;
+    box-shadow: 0 10px 30px rgba(255,107,0,.4);
+  }
+  .why-badge-float small { display: block; font-size: .7rem; font-weight: 400; opacity: .85; }
+  .why-text .section-title { color: var(--white); }
+  .why-text .section-sub { color: rgba(255,255,255,.6); }
+  .why-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-check {
+    width: 28px; height: 28px; border-radius: 8px; background: rgba(255,107,0,.15);
+    border: 1px solid rgba(255,107,0,.3); display: grid; place-items: center;
+    color: var(--sun); font-size: .85rem; flex-shrink: 0; margin-top: 2px;
+  }
+  .why-item-text h4 { color: var(--white); font-weight: 600; font-size: .98rem; margin-bottom: .2rem; }
+  .why-item-text p { color: rgba(255,255,255,.55); font-size: .88rem; line-height: 1.6; }
+
+  /* ── PROCESS ── */
+  #process { background: var(--white); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; position: relative; }
+  .process-steps::before {
+    content:''; position:absolute; top: 36px; left: calc(12.5% + 1px); right: calc(12.5% + 1px);
+    height: 2px; background: linear-gradient(90deg, var(--sun), var(--accent)); z-index:0;
+  }
+  .step { text-align: center; position: relative; z-index: 1; }
+  .step-num {
+    width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1.2rem;
+    background: var(--sun); color: var(--white);
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem;
+    display: grid; place-items: center;
+    box-shadow: 0 8px 24px rgba(255,107,0,.35);
+  }
+  .step h4 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: .5rem; }
+  .step p { color: var(--mid); font-size: .88rem; line-height: 1.6; }
+
+  /* ── INDUSTRIES ── */
+  #industries { background: var(--light); }
+  .ind-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; }
+  .ind-card {
+    background: var(--white); border-radius: 14px; padding: 1.5rem; text-align: center;
+    border: 1px solid rgba(0,0,0,.06); transition: transform .2s, border-color .2s;
+  }
+  .ind-card:hover { transform: translateY(-3px); border-color: var(--sun); }
+  .ind-icon { font-size: 2rem; margin-bottom: .6rem; }
+  .ind-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .95rem; }
+
+  /* ── IMAGE ROW ── */
+  .img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .img-panel { border-radius: 18px; overflow: hidden; position: relative; aspect-ratio: 16/9; }
+  .img-panel img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+  .img-panel:hover img { transform: scale(1.04); }
+  .img-panel-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(13,13,13,.8));
+    padding: 1.5rem 1.2rem .8rem;
+    color: var(--white); font-weight: 600; font-size: .95rem;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--white); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .testi-card {
+    background: var(--light); border-radius: 16px; padding: 1.8rem;
+    border: 1px solid rgba(0,0,0,.06); position: relative;
+  }
+  .testi-card::before { content: '"'; font-family: 'Syne', sans-serif; font-size: 5rem; color: var(--sun); opacity: .15; position: absolute; top: .5rem; right: 1.2rem; line-height: 1; }
+  .testi-stars { color: var(--sun); margin-bottom: .8rem; letter-spacing: 2px; }
+  .testi-text { color: var(--ink); font-size: .95rem; line-height: 1.7; margin-bottom: 1.2rem; }
+  .testi-author { display: flex; align-items: center; gap: .8rem; }
+  .testi-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--sun), var(--accent2));
+    display: grid; place-items: center; color: var(--white); font-weight: 700; font-size: 1rem;
+  }
+  .testi-name { font-weight: 600; font-size: .92rem; }
+  .testi-role { color: var(--mid); font-size: .8rem; }
+
+  /* ── CTA BAND ── */
+  #cta {
+    background: linear-gradient(135deg, var(--sun) 0%, #FF3D00 100%);
+    padding: 5rem 5%; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content:''; position:absolute; inset:0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  #cta .container { position: relative; z-index: 1; }
+  #cta h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--white); margin-bottom: 1rem; }
+  #cta p { color: rgba(255,255,255,.82); font-size: 1.1rem; max-width: 520px; margin: 0 auto 2.5rem; }
+  .cta-form { display: flex; gap: .8rem; max-width: 500px; margin: 0 auto; }
+  .cta-form input {
+    flex: 1; padding: .9rem 1.4rem; border-radius: 50px;
+    border: none; font-size: 1rem; outline: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .cta-form button {
+    background: var(--ink); color: var(--white); border: none;
+    padding: .9rem 1.8rem; border-radius: 50px; font-weight: 600; font-size: 1rem;
+    cursor: pointer; white-space: nowrap; font-family: 'DM Sans', sans-serif;
+    transition: transform .2s, background .2s;
+  }
+  .cta-form button:hover { background: #222; transform: scale(1.03); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink); color: rgba(255,255,255,.55); padding: 3.5rem 5% 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { color: rgba(255,255,255,.45); font-size: .9rem; line-height: 1.7; margin-top: .8rem; max-width: 260px; }
+  .footer-col h5 { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--white); margin-bottom: 1rem; font-size: .95rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+  .footer-col ul li a { color: rgba(255,255,255,.45); font-size: .88rem; text-decoration: none; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--sun); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; font-size: .82rem; }
+  .footer-social { display: flex; gap: .8rem; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1);
+    display: grid; place-items: center; color: rgba(255,255,255,.6);
+    font-size: .85rem; text-decoration: none; transition: background .2s, color .2s;
+  }
+  .social-btn:hover { background: var(--sun); color: var(--white); border-color: var(--sun); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-delay-1 { transition-delay: .1s; }
+  .fade-in-delay-2 { transition-delay: .2s; }
+  .fade-in-delay-3 { transition-delay: .3s; }
+  .fade-in-delay-4 { transition-delay: .4s; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 480px; margin: 0 auto; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    #why .container { grid-template-columns: 1fr; }
+    .why-badge-float { right: .5rem; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps::before { display: none; }
+    .ind-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width: 600px) {
+    nav { padding: 1rem 4%; }
+    .nav-links { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .ind-grid { grid-template-columns: repeat(2, 1fr); }
+    .img-row { grid-template-columns: 1fr; }
+    .cta-form { flex-direction: column; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="logo"><span>Sun</span>tech<div class="logo-dot"></div></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Started →</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Your Digital Growth Partner</div>
+      <h1>We Build<br><em>Brands That</em><br>Dominate Online</h1>
+      <p class="hero-desc">From SEO to software development, creative design to customer support — Suntech Info delivers end-to-end digital solutions that accelerate your business growth.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Explore Services →</a>
+        <a href="#contact" class="btn-ghost">Free Consultation</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-lbl">Projects Done</div></div>
+        <div class="stat"><div class="stat-num">98%</div><div class="stat-lbl">Client Satisfaction</div></div>
+        <div class="stat"><div class="stat-num">12+</div><div class="stat-lbl">Years Experience</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="Suntech Info Team at Work" />
+      <div class="hero-visual-overlay"></div>
+      <div class="floating-card">
+        <div class="dot"></div>
+        <span>127 active projects running right now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">SEO Optimization</div>
+    <div class="marquee-item">Quality Analysis</div>
+    <div class="marquee-item">Digital Marketing</div>
+    <div class="marquee-item">Creative Design</div>
+    <div class="marquee-item">Web Development</div>
+    <div class="marquee-item">Mobile Apps</div>
+    <div class="marquee-item">Software Development</div>
+    <div class="marquee-item">Sourcing Agency</div>
+    <div class="marquee-item">Customer Support</div>
+    <!-- Repeat for seamless loop -->
+    <div class="marquee-item">SEO Optimization</div>
+    <div class="marquee-item">Quality Analysis</div>
+    <div class="marquee-item">Digital Marketing</div>
+    <div class="marquee-item">Creative Design</div>
+    <div class="marquee-item">Web Development</div>
+    <div class="marquee-item">Mobile Apps</div>
+    <div class="marquee-item">Software Development</div>
+    <div class="marquee-item">Sourcing Agency</div>
+    <div class="marquee-item">Customer Support</div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <div class="section-eyebrow fade-in">What We Do</div>
+        <h2 class="section-title fade-in">Complete Digital<br>Solutions Under One Roof</h2>
+      </div>
+      <p class="section-sub fade-in">We combine strategy, creativity, and technology to deliver measurable results for your business.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="svc-icon">🔍</div>
+        <div class="svc-title">Search Engine Optimization</div>
+        <p class="svc-desc">Rank higher on Google with our data-driven SEO strategies. Keyword research, on-page optimization, backlink building, and technical audits that deliver real organic traffic growth.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="svc-icon">✅</div>
+        <div class="svc-title">Quality Analysis</div>
+        <p class="svc-desc">End-to-end QA testing and quality assurance services. We ensure your product performs flawlessly — from manual testing to automated QA pipelines, bug tracking, and compliance audits.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-3">
+        <div class="svc-icon">📣</div>
+        <div class="svc-title">Digital Marketing</div>
+        <p class="svc-desc">Full-funnel digital campaigns across social media, Google Ads, email marketing, and content strategy. We track every rupee and maximize your return on investment.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="svc-icon">🎨</div>
+        <div class="svc-title">Creative Design</div>
+        <p class="svc-desc">Brand identity, UI/UX design, graphic design, and visual storytelling that stops the scroll. Our designers craft experiences that convert visitors into loyal customers.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="svc-icon">💻</div>
+        <div class="svc-title">Web Design & Development</div>
+        <p class="svc-desc">Custom websites, e-commerce platforms, and web applications built with modern frameworks. Fast, responsive, and conversion-optimized — from landing pages to enterprise portals.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-3">
+        <div class="svc-icon">📱</div>
+        <div class="svc-title">Mobile App Development</div>
+        <p class="svc-desc">Native iOS & Android apps and cross-platform React Native solutions. From concept to App Store launch — we handle design, development, testing, and ongoing maintenance.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-title">Software Development</div>
+        <p class="svc-desc">Custom software solutions, SaaS products, CRM systems, and enterprise applications. Agile development with clean code, scalable architecture, and on-time delivery.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="svc-icon">🏭</div>
+        <div class="svc-title">Sourcing Agency</div>
+        <p class="svc-desc">Global procurement and supplier sourcing — we connect you with verified manufacturers, negotiate competitive pricing, handle logistics, and ensure quality compliance at every step.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+      <div class="service-card fade-in fade-in-delay-3">
+        <div class="svc-icon">🎧</div>
+        <div class="svc-title">Customer Support</div>
+        <p class="svc-desc">24/7 multi-channel customer support solutions — live chat, email, phone, and ticketing systems. Trained agents and AI-assisted tools that delight your customers and boost retention.</p>
+        <a href="#contact" class="svc-link">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY US ═══ -->
+<section id="why">
+  <div class="container">
+    <div class="why-visual fade-in">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80" alt="Expert team collaborating on digital strategy" />
+      <div class="why-badge-float">12+ Years<small>of Excellence</small></div>
+    </div>
+    <div class="why-text">
+      <div class="section-eyebrow fade-in">Why Suntech Info</div>
+      <h2 class="section-title fade-in">Your Growth is<br>Our Mission</h2>
+      <p class="section-sub fade-in" style="color:rgba(255,255,255,.6)">We don't just deliver services — we build long-term partnerships. Here's what sets us apart from the rest.</p>
+      <div class="why-list">
+        <div class="why-item fade-in">
+          <div class="why-check">✓</div>
+          <div class="why-item-text">
+            <h4>Dedicated Account Managers</h4>
+            <p>A single point of contact who understands your business inside-out and keeps you updated at every stage.</p>
+          </div>
+        </div>
+        <div class="why-item fade-in fade-in-delay-1">
+          <div class="why-check">✓</div>
+          <div class="why-item-text">
+            <h4>Transparent Reporting</h4>
+            <p>Real-time dashboards and monthly performance reports — no hidden metrics, no vague promises.</p>
+          </div>
+        </div>
+        <div class="why-item fade-in fade-in-delay-2">
+          <div class="why-check">✓</div>
+          <div class="why-item-text">
+            <h4>Agile & Scalable Teams</h4>
+            <p>Scale up or down as your needs evolve. Our flexible team structure adapts to projects of any size.</p>
+          </div>
+        </div>
+        <div class="why-item fade-in fade-in-delay-3">
+          <div class="why-check">✓</div>
+          <div class="why-item-text">
+            <h4>Proven Track Record</h4>
+            <p>500+ successful projects across industries. Our results speak — and our clients stay for years.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section id="process">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 1rem;">
+      <div class="section-eyebrow fade-in">How We Work</div>
+      <h2 class="section-title fade-in">Simple, Proven Process</h2>
+      <p class="section-sub fade-in" style="margin: 0 auto; text-align:center;">From discovery to delivery, every project follows a structured approach built for success.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step fade-in fade-in-delay-1">
+        <div class="step-num">01</div>
+        <h4>Discovery</h4>
+        <p>We dive deep into your goals, market, and competition to build a tailored strategy.</p>
+      </div>
+      <div class="step fade-in fade-in-delay-2">
+        <div class="step-num">02</div>
+        <h4>Strategy</h4>
+        <p>A clear roadmap with timelines, KPIs, and milestones — aligned to your business objectives.</p>
+      </div>
+      <div class="step fade-in fade-in-delay-3">
+        <div class="step-num">03</div>
+        <h4>Execute</h4>
+        <p>Our expert teams deliver with precision, quality control, and transparent communication.</p>
+      </div>
+      <div class="step fade-in fade-in-delay-4">
+        <div class="step-num">04</div>
+        <h4>Grow</h4>
+        <p>We analyze results, optimize campaigns, and scale what works — driving ongoing growth.</p>
+      </div>
+    </div>
+
+    <!-- Image Row -->
+    <div class="img-row" style="margin-top:4rem;">
+      <div class="img-panel fade-in">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Digital marketing analytics" />
+        <div class="img-panel-label">Data-Driven Marketing Results</div>
+      </div>
+      <div class="img-panel fade-in fade-in-delay-2">
+        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Mobile app development" />
+        <div class="img-panel-label">World-Class App Development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INDUSTRIES ═══ -->
+<section id="industries">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-eyebrow fade-in">Industries We Serve</div>
+      <h2 class="section-title fade-in">Built for Every Sector</h2>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-card fade-in"><div class="ind-icon">🛒</div><h4>E-Commerce</h4></div>
+      <div class="ind-card fade-in fade-in-delay-1"><div class="ind-icon">🏥</div><h4>Healthcare</h4></div>
+      <div class="ind-card fade-in fade-in-delay-2"><div class="ind-icon">🏦</div><h4>Finance & Banking</h4></div>
+      <div class="ind-card fade-in fade-in-delay-3"><div class="ind-icon">🎓</div><h4>Education</h4></div>
+      <div class="ind-card fade-in"><div class="ind-icon">🏗️</div><h4>Real Estate</h4></div>
+      <div class="ind-card fade-in fade-in-delay-1"><div class="ind-icon">🍽️</div><h4>Food & Hospitality</h4></div>
+      <div class="ind-card fade-in fade-in-delay-2"><div class="ind-icon">🚗</div><h4>Automotive</h4></div>
+      <div class="ind-card fade-in fade-in-delay-3"><div class="ind-icon">📦</div><h4>Logistics</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <div class="section-eyebrow fade-in">Client Stories</div>
+      <h2 class="section-title fade-in">Trusted by Businesses<br>Across the Globe</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-in">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Suntech transformed our entire digital presence. Our organic traffic grew 320% in 6 months and leads are coming in consistently. They're not just an agency — they're a true growth partner.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RK</div>
+          <div><div class="testi-name">Rahul Kapoor</div><div class="testi-role">CEO, NovaTrade Pvt Ltd</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade-in fade-in-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The mobile app they built for us has over 50,000 downloads and a 4.8 star rating. The team was professional, responsive, and delivered ahead of schedule. Highly recommend!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SM</div>
+          <div><div class="testi-name">Sneha Mehta</div><div class="testi-role">Founder, FreshCart App</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade-in fade-in-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Their sourcing team saved us 35% on procurement costs within the first quarter. Reliable suppliers, smooth communication, and absolute transparency. We've renewed our contract three times.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AJ</div>
+          <div><div class="testi-name">Amit Joshi</div><div class="testi-role">Director, GlobalSource Industries</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="contact">
+  <div id="cta">
+    <div class="container">
+      <h2>Ready to Grow Your Business?</h2>
+      <p>Book a free 30-minute strategy call. No commitments, just clarity on how we can help you achieve your goals.</p>
+      <div class="cta-form">
+        <input type="email" placeholder="Enter your email address" />
+        <button type="button">Get Free Consultation</button>
+      </div>
+      <p style="margin-top:1rem; color:rgba(255,255,255,.6); font-size:.85rem;">📞 Also reach us at: <strong style="color:#fff">+91 98765 43210</strong> &nbsp;|&nbsp; 📧 hello@suntechinfo.com</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><span>Sun</span>tech<div class="logo-dot"></div></div>
+        <p>Your trusted digital partner for growth, innovation, and results. Building the future, one project at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">SEO</a></li>
+          <li><a href="#services">Quality Analysis</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+          <li><a href="#services">Creative Design</a></li>
+          <li><a href="#services">Web Development</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>More Services</h5>
+        <ul>
+          <li><a href="#services">Mobile Apps</a></li>
+          <li><a href="#services">Software Dev</a></li>
+          <li><a href="#services">Sourcing</a></li>
+          <li><a href="#services">Customer Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#why">About Us</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#testimonials">Case Studies</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Suntech Info. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">tw</a>
+        <a href="#" class="social-btn">fb</a>
+        <a href="#" class="social-btn">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // CTA button feedback
+  const ctaBtn = document.querySelector('.cta-form button');
+  const ctaInput = document.querySelector('.cta-form input');
+  ctaBtn.addEventListener('click', () => {
+    if (ctaInput.value.includes('@')) {
+      ctaBtn.textContent = '✅ We\'ll be in touch!';
+      ctaBtn.style.background = '#00C9A7';
+      ctaInput.value = '';
+    } else {
+      ctaInput.style.outline = '2px solid #fff';
+      ctaInput.placeholder = 'Please enter a valid email';
+      setTimeout(() => { ctaInput.style.outline='none'; ctaInput.placeholder='Enter your email address'; }, 2000);
+    }
+  });
+</script>
+</body>
+</html>
